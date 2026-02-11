@@ -1,31 +1,53 @@
-// Motor control pins
-const int motor1Pin1 = 9;  // Connects to L293D Pin 2
-const int motor1Pin2 = 10; // Connects to L293D Pin 7
+#include <AFMotor.h>
+
+// Create motor objects for all 4 ports
+AF_DCMotor motor1(1);
+AF_DCMotor motor2(2);
+AF_DCMotor motor3(3);
+AF_DCMotor motor4(4);
 
 void setup() {
-  // Set motor pins as outputs
-  pinMode(motor1Pin1, OUTPUT);
-  pinMode(motor1Pin2, OUTPUT);
+  // Set initial speed (0 to 255)
+  motor1.setSpeed(200);
+  motor2.setSpeed(200);
+  motor3.setSpeed(200);
+  motor4.setSpeed(200);
+  
+  // Turn off motors initially
+  motor1.run(RELEASE);
+  motor2.run(RELEASE);
+  motor3.run(RELEASE);
+  motor4.run(RELEASE);
 }
 
 void loop() {
-  // Spin the motor in one direction
-  digitalWrite(motor1Pin1, HIGH);
-  digitalWrite(motor1Pin2, LOW);
-  delay(2000); // Wait for 2 seconds
+  
+    
+  // Move Forward
+  motor1.run(FORWARD);
+  motor2.run(FORWARD);
+  motor3.run(FORWARD);
+  motor4.run(FORWARD);
+  delay(2000);
 
-  // Stop the motor
-  digitalWrite(motor1Pin1, LOW);
-  digitalWrite(motor1Pin2, LOW);
-  delay(1000); // Wait for 1 second
+  // Stop
+  motor1.run(RELEASE);
+  motor2.run(RELEASE);
+  motor3.run(RELEASE);
+  motor4.run(RELEASE);
+  delay(1000);
 
-  // Spin the motor in the opposite direction
-  digitalWrite(motor1Pin1, LOW);
-  digitalWrite(motor1Pin2, HIGH);
-  delay(2000); // Wait for 2 seconds
+  // Move Backward
+  motor1.run(BACKWARD);
+  motor2.run(BACKWARD);
+  motor3.run(BACKWARD);
+  motor4.run(BACKWARD);
+  delay(2000);
 
-  // Stop the motor
-  digitalWrite(motor1Pin1, LOW);
-  digitalWrite(motor1Pin2, LOW);
-  delay(1000); // Wait for 1 second
+  // Stop
+  motor1.run(RELEASE);
+  motor2.run(RELEASE);
+  motor3.run(RELEASE);
+  motor4.run(RELEASE);
+  delay(1000);
 }
